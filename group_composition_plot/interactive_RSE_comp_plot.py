@@ -345,11 +345,10 @@ def save_submission(
     activity_widths,
 ):
     # check if the user has given all required values
+    # institution citation and free text are not required.
     check_inputs = bool(
         institution_name
-        and institution_citation
         and institution_contact
-        and institution_text
     )
 
     check_weights = not all(
@@ -360,7 +359,7 @@ def save_submission(
     )  # return false if all values are 1
 
     if not check_inputs:
-        message = "Please fill in all required fields at the top."
+        message = "Please fill your institution name and contact."
         return message, {"color": "red"}
     elif not check_weights:
         message = "Please adjust your weights."
