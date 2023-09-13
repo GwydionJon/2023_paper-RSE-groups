@@ -39,7 +39,7 @@ def create_settings_card(name, explanation):
                 html.P(
                     explanation,
                     style={
-                        "font-size": "10px",
+                        "font-size": "12px",
                     },
                 ),
                 html.Div(
@@ -49,14 +49,14 @@ def create_settings_card(name, explanation):
                                 # labels
                                 dbc.Col(
                                     [
-                                        html.P("Weight", style={"font-size": "10px"}),
+                                        html.P("Weight", style={"font-size": "12px"}),
                                     ]
                                 ),
                                 dbc.Col(
                                     [
                                         html.P(
                                             "Centralization",
-                                            style={"font-size": "10px"},
+                                            style={"font-size": "12px"},
                                         ),
                                     ]
                                 ),
@@ -78,7 +78,7 @@ def create_settings_card(name, explanation):
                                             style={"width": "50%"},
                                         ),
                                     ],
-                                    style={"font-size": "10px"},
+                                    style={"font-size": "12px"},
                                 ),
                                 dbc.Col(
                                     [
@@ -96,7 +96,7 @@ def create_settings_card(name, explanation):
                                             style={"width": "50%"},
                                         ),
                                     ],
-                                    style={"font-size": "10px"},
+                                    style={"font-size": "12px"},
                                 ),
                             ],
                         ),
@@ -421,7 +421,7 @@ if __name__ == "__main__":
                 [
                     dbc.Col(create_accordion_settings(), width=3),
                     dbc.Col(
-                        dcc.Graph(id="RSE_graph", style={"height": "80%"}), width=9
+                        dcc.Graph(id="RSE_graph", style={"height": "700px"}), width=9
                     ),
                 ]
             ),
