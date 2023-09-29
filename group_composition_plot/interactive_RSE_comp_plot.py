@@ -318,12 +318,29 @@ def create_submission_header():
                 dbc.InputGroup(
                     [
                         dbc.InputGroupText(
-                            "Do these categories represent your institution?",
+                            html.P("Do these categories represent your institution?"),
                             style={"width": "20%"},
                         ),
                         dbc.Textarea(
                             placeholder="Here you can write a free text about your institution",
                             id="institution_text",
+                        ),
+                    ],
+                ),
+            ),
+            dbc.Row(
+                dbc.InputGroup(
+                    [
+                        dbc.InputGroupText(
+                            html.P("Characterize your institution:",),
+                            style={
+                                "width": "20%",
+                               
+                            },
+                        ),
+                        dbc.Textarea(
+                            placeholder="Here you can write a free text to characterize your institution",
+                            id="institution_characterization",
                         ),
                     ],
                 ),
@@ -340,16 +357,14 @@ def save_submission(
     institution_citation,
     institution_contact,
     institution_text,
+    institution_characterization,
     activity_names,
     activity_weights,
     activity_widths,
 ):
     # check if the user has given all required values
     # institution citation and free text are not required.
-    check_inputs = bool(
-        institution_name
-        and institution_contact
-    )
+    check_inputs = bool(institution_name and institution_contact)
 
     check_weights = not all(
         1 == x for x in activity_weights
@@ -374,6 +389,7 @@ def save_submission(
         "institution_citation": institution_citation,
         "institution_contact": institution_contact,
         "institution_text": institution_text,
+        "institution_characterization": institution_characterization,
         "activity_names": activity_names,
         "activity_weights": activity_weights,
         "activity_widths": activity_widths,
@@ -407,8 +423,6 @@ def save_submission(
     else:
         message = "Something went wrong. Please try again."
         return message, {"color": "red"}
-
-
 
 
 if __name__ == "__main__":
@@ -475,6 +489,7 @@ if __name__ == "__main__":
         State("institution_citation", "value"),
         State("institution_contact", "value"),
         State("institution_text", "value"),
+        State("institution_characterization", "value"),
         State(
             {
                 "type": "activity-name",
