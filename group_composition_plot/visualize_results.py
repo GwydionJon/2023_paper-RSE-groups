@@ -13,7 +13,7 @@ import json
 
 # settings
 dash_port = 8015
-data_dir = "./submissions"
+data_dir = "./submissions/2023-12-06_submissions"
 
 
 def get_data(data_dir):
@@ -30,7 +30,6 @@ def get_data(data_dir):
 
 
 def create_layout(json_dicts):
-    print(json_dicts)
     layout = html.Div(
         id="main",
         style={"margin": "1%"},
@@ -81,7 +80,7 @@ def create_result_text(
             dbc.InputGroup(
                 [
                     dbc.InputGroupText("Institution text", style={"width": "40%"}),
-                    dbc.Input(value=institution_text, readonly=True),
+                    dbc.Textarea(value=institution_text, readonly=True),
                 ]
             ),
         ], style={"width": "30%", "margin-top": "1%"}
@@ -93,10 +92,10 @@ def show_results(json_dict):
     with open(json_dict) as f:
         data = json.load(f)
     
-    instition_name = data["institution_name"] 
-    institution_citation = data["institution_citation"]
-    institution_contact = data["institution_contact"]
-    institution_text = data["institution_text"]
+    instition_name = data.get("institution_name", "Nothing written here") 
+    institution_citation =  data.get("institution_citation", "Nothing written here") 
+    institution_contact =  data.get("institution_contact", "Nothing written here") 
+    institution_text =  data.get("institution_text", "Nothing written here") 
     activity_names = data["activity_names"]
     activity_weights = data["activity_weights"]
     activity_widths = data["activity_widths"]
